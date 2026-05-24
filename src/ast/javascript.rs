@@ -1,11 +1,25 @@
-pub fn traverse_js_ast(node: tree_sitter::Node, source: &[u8], imports: &mut Vec<String>) {
+pub fn traverse_js_ast_detailed(
+    node: tree_sitter::Node,
+    source: &[u8],
+    imports: &mut Vec<String>,
+    re_exports: &mut Vec<String>,
+) {
     let kind = node.kind();
-    if kind == "import_statement" || kind == "export_statement" {
+    if kind == "import_statement" {
         for child in node.children(&mut node.walk()) {
             if child.kind() == "string" {
                 if let Ok(text) = child.utf8_text(source) {
                     let path = text.trim_matches(|c| c == '\'' || c == '"' || c == '`');
                     imports.push(path.to_string());
+                }
+            }
+        }
+    } else if kind == "export_statement" {
+        for child in node.children(&mut node.walk()) {
+            if child.kind() == "string" {
+                if let Ok(text) = child.utf8_text(source) {
+                    let path = text.trim_matches(|c| c == '\'' || c == '"' || c == '`');
+                    re_exports.push(path.to_string());
                 }
             }
         }
@@ -33,8 +47,14 @@ pub fn traverse_js_ast(node: tree_sitter::Node, source: &[u8], imports: &mut Vec
     }
 
     for child in node.children(&mut node.walk()) {
-        traverse_js_ast(child, source, imports);
+        traverse_js_ast_detailed(child, source, imports, re_exports);
     }
+}
+
+pub fn traverse_js_ast(node: tree_sitter::Node, source: &[u8], imports: &mut Vec<String>) {
+    let mut re_exports = Vec::new();
+    traverse_js_ast_detailed(node, source, imports, &mut re_exports);
+    imports.extend(re_exports);
 }
 
 #[cfg(test)]
