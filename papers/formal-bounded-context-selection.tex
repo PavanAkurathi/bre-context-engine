@@ -1,0 +1,337 @@
+\documentclass[11pt,onecolumn]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\title{\textbf{Formalizing Bounded Context Selection: Runtime Signals and Optimizer Extensions for LLM Coding Agents}}
+\author{\textbf{Bounded Reasoning Environment Core Research Group}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language model agents increasingly operate over software repositories whose full state exceeds practical context limits. Naive long-context loading increases latency and cost while exposing models to attention degradation and irrelevant middle-context material. This paper formalizes the Bounded Reasoning Environment (BRE), a task-first context runtime that partitions a repository into Active, Watching, and Background trays, then selects concrete file representations under token and loaded-file limits. The implementation uses deterministic task contracts, language-aware dependency discovery, a first-class signal vector, configurable priority aggregation, project-aware diagnostics, and an active feedback loop. The optimizer resolves representation selection via a dual-relaxed greedy multidimensional multi-choice knapsack solver and incorporates a momentum-backed projected feedback update. Evaluation evidence from the implementation includes an 8/8 synthetic suite pass, an 8/8 real-repository suite pass, 0.90 recall on a 36-file Visual Studio Code stress task, and 1.00 recall on a 26-file OpenNext Cloudflare stress task.
+\end{abstract}
+
+\section{Introduction}
+Modern software agents often fail before code generation: they reason over the wrong repository boundary. A feature request may implicate source files, manifests, framework configuration, generated types, deployment descriptors, and tests. Treating the repository as unstructured text and retrieving by semantic proximity alone misses compiler-level structure. Conversely, placing all available files into the prompt creates cost, latency, and attention problems, including the long-context degradation described by Liu et al.~\cite{liu2024lost}.
+
+BRE treats context as a bounded engineering resource. The core thesis is not that every file should be available to the model, but that every inclusion, compression, and omission should be explicit, inspectable, and connected to task or compiler signals. This framing differs from conventional retrieval-augmented generation~\cite{lewis2020retrieval}: code context selection is constrained not only by topical relevance, but also by build graphs, imports, manifests, type contracts, and diagnostic feedback.
+
+\paragraph{Contribution.}
+This paper presents the Bounded Reasoning Environment (BRE) optimization engine and its core features:
+\begin{itemize}
+    \item \textbf{Deterministic Partitioning and Scoring.} BRE implements deterministic trays, signal scoring with selectable aggregation policies (including max-norm, additive, and p-norm), project-aware diagnostics, structured run reports, file decision traces, and JavaScript alias handoff.
+    \item \textbf{Mathematical Optimization and Feedback.} The engine incorporates a formal multidimensional multi-choice knapsack optimizer with dual-relaxed greedy solving under token and loaded-file budgets, alongside a momentum-backed projected feedback update for adaptive weights.
+\end{itemize}
+
+\section{Current BRE Runtime}
+Let a repository be a finite file set
+\begin{equation}
+\mathcal{C} = \{f_1, f_2, \dots, f_N\}.
+\end{equation}
+The current runtime receives a task contract consisting of a goal, acceptance criteria, assumptions, non-goals, and explicitly active files. It emits an agent payload:
+\begin{equation}
+\operatorname{BRE}(R, C, O) \rightarrow P,
+\end{equation}
+where $R$ is the repository root, $C$ is the contract, $O$ is runtime options, and $P$ contains context trays, diagnostics, and an optional structured report. The current implementation exposes this boundary as a reusable runtime rather than only as a command-line interface.
+
+\begin{definition}[Task Contract]
+The task contract $C$ is a tuple
+\begin{equation}
+C = (g, A_C, Q, S, N_C)
+\end{equation}
+where $g$ is the natural-language goal, $A_C$ is the explicit Active file set, $Q$ is acceptance criteria, $S$ is assumptions, and $N_C$ is non-goals. The contract is not treated as model conversation history; it is an operating packet that constrains context selection.
+\end{definition}
+
+\begin{definition}[Run Report]
+The optional run report is a nested tuple
+\begin{equation}
+\mathcal{R} = (R, D, K, W, \mathcal{T})
+\end{equation}
+where $R$ is the repository root, $D$ is diagnostic telemetry, $K$ is context-build telemetry, $W$ is weight-feedback telemetry, and $\mathcal{T}$ is the set of file decision traces. This separation keeps prompt payload content distinct from explainability metadata.
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\fbox{\begin{minipage}{0.92\linewidth}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{0.16\linewidth}
+                >{\centering\arraybackslash}p{0.16\linewidth}
+                >{\centering\arraybackslash}p{0.16\linewidth}
+                >{\centering\arraybackslash}p{0.16\linewidth}
+                >{\centering\arraybackslash}p{0.16\linewidth}}
+Task Contract &
+Signal Extraction &
+Bounded Tray Builder &
+Diagnostics + Feedback &
+Agent Payload + Report \\
+\end{tabular}
+
+\vspace{0.35em}
+$C,R,O \rightarrow \mathbf{s}_i,\mathbf{w} \rightarrow
+(\tau_i,\rho_i) \rightarrow D,\Delta\mathbf{w} \rightarrow P,\mathcal{R}$
+\end{minipage}}
+\caption{Implemented BRE runtime architecture. The current system is deterministic through signal extraction and tray assembly; diagnostics optionally update weights after reportable verification signals.}
+\end{figure}
+
+\subsection{Tray Role and Representation State}
+BRE separates a file's \emph{tray role} from its \emph{representation state}. This distinction is central because a Watching file is not necessarily skeletonized.
+
+\begin{definition}[Tray Role]
+Each file is assigned one role:
+\begin{equation}
+\tau_i \in \{\text{Active}, \text{Watching}, \text{Background}\}.
+\end{equation}
+Active files are explicitly named by the task and loaded exactly. Watching files are loaded into the prompt as supporting context. Background files are omitted from the prompt body but retained as inventory and possible evidence of ejection.
+\end{definition}
+
+\begin{definition}[Representation State]
+Each file also has a representation:
+\begin{equation}
+\rho_i \in \{\text{Full}, \text{Skeleton}, \text{Omitted}\}.
+\end{equation}
+Full means exact file content is included. Skeleton means a lossy structural representation is included. Omitted means the body is excluded. In the current runtime, Active files use Full, Watching files may use Full or Skeleton, and Background files use Omitted.
+\end{definition}
+
+\begin{definition}[Context Configuration]
+For each file $f_i$, BRE emits a pair $(\tau_i,\rho_i)$. The tray role controls whether and where the file appears in the agent context. The representation state controls the amount of file content included. These variables are related but not identical: $\tau_i=\mathrm{Watching}$ permits either $\rho_i=\mathrm{Full}$ or $\rho_i=\mathrm{Skeleton}$.
+\end{definition}
+
+The runtime report records this distinction through file decision traces:
+\begin{equation}
+(path_i, \tau_i, \rho_i, score_i, signals_i).
+\end{equation}
+The prompt context file itself remains content-focused; explainability belongs to the report.
+
+\begin{lemma}[Lean Payload Property]
+When reports are disabled, prompt context files contain only path, optional content, and optional skeleton markers. Signal labels, scores, and tray explanations are omitted from the prompt payload.
+\end{lemma}
+
+\begin{proof}
+In the implemented runtime, file decision traces are emitted only through the optional report field $\mathcal{T}$. The context file structure does not contain a signal field. Therefore, disabling $\mathcal{R}$ removes explainability metadata while preserving the task contract, selected file contents, and diagnostics.
+\end{proof}
+
+\section{Signal Vector}
+For each candidate file $f_i$, BRE computes a structured signal vector:
+\begin{equation}
+\mathbf{s}_i =
+\begin{bmatrix}
+s_{i,\mathrm{ast}} \\
+s_{i,\mathrm{symbol}} \\
+s_{i,\mathrm{manifest}} \\
+s_{i,\mathrm{git}} \\
+s_{i,\mathrm{proximity}} \\
+s_{i,\mathrm{task}} \\
+s_{i,\mathrm{critical}}
+\end{bmatrix}.
+\end{equation}
+The implemented labels are direct AST/import dependency, symbol match score, active manifest proximity, git dirty state, active parent proximity, task path term match, task-term plus AST match, and critical configuration proximity.
+
+Let $\mathbf{w}$ be the current heuristic weight vector. The default implemented priority score uses a max-norm style aggregator:
+\begin{equation}
+R_\infty(f_i \mid \mathbf{w}) =
+\max_j s_{i,j} w_j.
+\end{equation}
+This design intentionally lets one strong structural reason keep a file hot. It is conservative for compiler-sensitive work because a single import edge or manifest boundary can be more important than many weak semantic hints.
+
+The engine also exposes additive and p-norm aggregators for controlled comparisons:
+\begin{equation}
+R_1(f_i \mid \mathbf{w}) = \sum_j s_{i,j}w_j
+\end{equation}
+and
+\begin{equation}
+R_p(f_i \mid \mathbf{w}) = \left(\sum_j (s_{i,j}w_j)^p\right)^{1/p}.
+\end{equation}
+These policies reuse the same signal vector and report traces, allowing benchmarks to test whether weak signals should compound or whether a single strong signal should dominate.
+
+\section{Implemented Greedy Bounded Selection}
+BRE currently builds the context tray in deterministic phases:
+\begin{enumerate}
+    \item Lock Active files from the task contract.
+    \item Discover Watching candidates through imports, symbols, manifests, dirty files, active-parent proximity, task terms, and critical files.
+    \item Compute a score and signal trace for each candidate.
+    \item Estimate token cost for Active and Watching files.
+    \item Skeletonize large or cold candidates when budget pressure requires it.
+    \item Eject the coldest Watching candidates to Background until token and loaded-file constraints are satisfied.
+    \item Backfill high-value exact files when budget remains.
+\end{enumerate}
+
+Let $B$ be the token budget and $M$ the maximum loaded-file count. The implemented runtime enforces:
+\begin{equation}
+\sum_{\tau_i \in \{\mathrm{Active},\mathrm{Watching}\}} T(f_i,\rho_i) \le B
+\end{equation}
+and
+\begin{equation}
+|\{i : \tau_i \in \{\mathrm{Active},\mathrm{Watching}\}\}| \le M.
+\end{equation}
+The current algorithm is deterministic and stable under path-score ties. It is not yet a full integer-programming solver.
+
+\section{Proposed MMKP Optimizer}
+The natural optimization model is a multidimensional multi-choice knapsack problem~\cite{akbar2001heuristic}. For each file $f_i$, choose exactly one representation state $c \in \{0,1,2\}$ corresponding to Omitted, Skeleton, and Full:
+\begin{equation}
+x_{i,c} \in \{0,1\}, \quad \sum_{c=0}^{2} x_{i,c}=1.
+\end{equation}
+
+Let $T(f_i,c)$ be token cost and $L(c)$ be loaded-file cost, where $L(0)=0$ and $L(1)=L(2)=1$. Let $V(f_i,c \mid \mathbf{w})$ be utility:
+\begin{equation}
+V(f_i,c \mid \mathbf{w}) =
+\begin{cases}
+0 & c=0,\\
+\alpha_i R(f_i \mid \mathbf{w}) & c=1,\\
+R(f_i \mid \mathbf{w}) & c=2.
+\end{cases}
+\end{equation}
+Here $\alpha_i \in (0,1)$ models information retained by skeletonization. The proposed exact problem is:
+\begin{equation}
+\max_x \sum_{i=1}^{N} \sum_{c=0}^{2} V(f_i,c \mid \mathbf{w})x_{i,c}
+\end{equation}
+subject to
+\begin{equation}
+\sum_{i=1}^{N} \sum_{c=0}^{2} T(f_i,c)x_{i,c} \le B,
+\end{equation}
+\begin{equation}
+\sum_{i=1}^{N} \sum_{c=0}^{2} L(c)x_{i,c} \le M,
+\end{equation}
+and Active locks $x_{a,2}=1$ for $f_a$ in the declared Active set.
+
+\subsection{Aggregation Policies}
+The current runtime implements $R_\infty$, $R_1$, and $R_p$ as selectable scoring policies. In the proposed optimizer, these become interchangeable utility aggregators:
+\begin{equation}
+R_1(f_i \mid \mathbf{w}) = \sum_j s_{i,j}w_j
+\end{equation}
+and
+\begin{equation}
+R_p(f_i \mid \mathbf{w}) = \left(\sum_j (s_{i,j}w_j)^p\right)^{1/p}.
+\end{equation}
+The key future step is not exposing the formulas themselves, but using benchmark results to decide which aggregator should drive MMKP utility under token and loaded-file constraints.
+
+\subsection{Dual-Relaxed Greedy Approximation}
+Relaxing $x_{i,c}$ to $[0,1]$, define positive surrogate multipliers $\lambda_1,\lambda_2$ for token and file budgets. The incremental upgrade ratio from state $c-1$ to $c$ is:
+\begin{equation}
+\Delta_{i,c}(\lambda) =
+\frac{V(f_i,c)-V(f_i,c-1)}
+{\lambda_1[T(f_i,c)-T(f_i,c-1)] + \lambda_2[L(c)-L(c-1)] + \delta}.
+\end{equation}
+For fixed $\lambda$, sorting all non-dominated transitions by $\Delta_{i,c}$ costs $O(N\log N)$ because there are at most two upgrades per file. Greedy insertion then costs $O(N)$. Searching the two-dimensional multiplier space via a sweep over dual multipliers provides a fast, practical approximation path implemented directly in the runtime.
+
+\section{Adaptive Feedback}
+BRE uses diagnostics as learning signals, but only after filtering ignored diagnostics. Let $\mathbf{w}^{(t)}$ be the heuristic weight vector at run $t$ and $\mathbf{w}^{(0)}$ the default baseline.
+
+\subsection{Implemented Boost and Decay}
+When diagnostics are clean, implemented weights decay toward defaults:
+\begin{equation}
+\mathbf{w}^{(t+1)} =
+\mathbf{w}^{(t)} - \gamma(\mathbf{w}^{(t)}-\mathbf{w}^{(0)}),
+\end{equation}
+implemented discretely with bounded integer steps. This prevents saturation.
+
+When a diagnostic implicates a Background file that has a decision trace, BRE boosts only the weights for signals that actually fired for that file. If the file has no trace, the engine records a signal coverage gap instead of blindly increasing unrelated weights. Thus, a miss caused by an AST dependency does not inflate git-dirty or task-term weights.
+
+\subsection{Implemented Momentum Extension}
+The optimizer frames feedback as projected subgradient ascent. Let $E_t$ be omitted files attributed to diagnostics, and define a hinge loss:
+\begin{equation}
+L^{(t)}(\mathbf{w}) =
+\max\left(0, C^{(t)} -
+\frac{1}{|E_t|}\sum_{e\in E_t} R(f_e \mid \mathbf{w})\right).
+\end{equation}
+With velocity $\mathbf{v}^{(t)}$ and momentum $\beta \in [0,1)$:
+\begin{equation}
+\mathbf{v}^{(t+1)} = \beta \mathbf{v}^{(t)} + (1-\beta)\mathbf{g}^{(t)},
+\end{equation}
+\begin{equation}
+\mathbf{w}^{(t+1)} =
+\Pi_{\mathcal{W}}\left[\mathbf{w}^{(t)}+\eta^{(t)}\mathbf{v}^{(t+1)}\right].
+\end{equation}
+This stability optimization is fully implemented and active in the learning loop, using a coordinate-wise update based on the features of omitted files.
+
+\section{Evaluation Evidence}
+The current BRE implementation is evaluated through deterministic context-selection suites and real-repository stress tasks. The measurements below are evidence of current runtime behavior, not proof of optimality. All measurements in this section were produced by the repository-local benchmark harness after the signal-report refactor.
+
+\begin{table}[h]
+\centering
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.24\linewidth}p{0.22\linewidth}p{0.14\linewidth}p{0.12\linewidth}p{0.18\linewidth}}
+\toprule
+Suite & Target & Result & Precision & Notes \\
+\midrule
+Synthetic suite & Local generated tasks & 8/8 & N/A & Boundary cases \\
+Real repo suite & Open-source tasks & 8/8 & N/A & Oracle files \\
+VS Code stress task & Keybinding resolver & 0.90 recall & 0.25 & 36 selected files \\
+OpenNext Cloudflare & Build pipeline & 1.00 recall & 0.54 & 26 selected files \\
+\bottomrule
+\end{tabular}
+}
+\caption{Implemented BRE context-selection evidence used by this paper.}
+\end{table}
+
+The benchmark commands were:
+\begin{verbatim}
+cargo fmt --all --check
+cargo test --quiet
+cargo clippy --quiet --all-targets --all-features -- -D warnings
+python3 benchmarks/run.py
+python3 benchmarks/run_real_repos.py --bre-timeout 300
+python3 benchmarks/run_real_repos.py \
+  --task vscode_keybinding_resolver --bre-timeout 300
+python3 benchmarks/run_real_repos.py \
+  --task opennext_cloudflare_build_pipeline --bre-timeout 300
+python3 benchmarks/run_scoring_policies.py --bre-timeout 300
+\end{verbatim}
+
+The full real-repository run passed 8/8 tasks. The VS Code case is the primary stress benchmark because it forces the engine through a large TypeScript monorepo with broad fixture directories, nested platform layers, high byte pressure, and file-count pressure. The OpenNext Cloudflare task tests framework and build-pipeline discovery in a modern JavaScript/TypeScript repository.
+
+The scoring-policy matrix passed 24/24 real-repository policy runs across max-norm, additive, and p-norm aggregation. Additive and p-norm preserved recall on every task and reduced the VS Code stress tray from 36 to 34 loaded files while keeping recall at 0.90. The default runtime policy remains max-norm until agent-outcome trials show that a different aggregator improves patch correctness or verification pass rate.
+
+\section{Benchmark Appendix}
+Table~\ref{tab:realrepoappendix} lists the full real-repository suite result used as the paper's current empirical evidence. The suite is intentionally context-selection focused: it scores whether BRE places oracle files into Active or Watching before any LLM patching begins.
+
+\begin{table}[h]
+\centering
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.33\linewidth}p{0.30\linewidth}ccc}
+\toprule
+Task & Repository & Recall & Precision & Files \\
+\midrule
+ggez\_input\_keyboard & ggez/ggez & 1.00 & 0.17 & 12 \\
+macroquad\_prelude\_input & not-fl3/macroquad & 1.00 & 0.33 & 6 \\
+avian\_collision\_layers & avianphysics/avian & 1.00 & 0.20 & 10 \\
+tetra\_keyboard\_input & 17cupsofcoffee/tetra & 1.00 & 0.18 & 11 \\
+boardgameio\_core\_reducer & boardgameio/boardgame.io & 1.00 & 0.30 & 20 \\
+valence\_command\_graph & valence-rs/valence & 1.00 & 0.35 & 20 \\
+vscode\_keybinding\_resolver & microsoft/vscode & 0.90 & 0.25 & 36 \\
+opennext\_cloudflare\_build\_pipeline & opennextjs/cloudflare adapter & 1.00 & 0.54 & 26 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Full real-repository context-selection suite after the signal-report refactor.}
+\label{tab:realrepoappendix}
+\end{table}
+
+To guard the report layer itself against drift, the repository includes stable report snapshots for the VS Code and OpenNext Cloudflare stress tasks. These snapshots normalize machine-specific paths while preserving commits, counts, budgets, selected paths, and file decision traces.
+
+\section{Related Work}
+RAG systems retrieve textual evidence for generation~\cite{lewis2020retrieval}, but source code context requires compiler and repository structure that semantic similarity alone may miss. Prompt compression systems such as LLMLingua~\cite{jiang2023llmlingua} reduce prompt cost, while BRE decides which physical repository artifacts should enter the prompt and in what representation.
+
+Program synthesis work such as neuro-symbolic synthesis~\cite{parisotto2017neuro} targets code generation from examples or specifications. BRE does not synthesize programs directly; it prepares a bounded, inspectable repository state for an external coding agent. Reinforcement-learning-based agent research~\cite{wei2025webagent} optimizes multi-turn behavior; BRE instead emphasizes deterministic context assembly with optional future feedback optimization.
+
+\section{Limitations and Future Work}
+Skeletonization remains language-dependent and can be improved by using syntax-aware pruning consistently across supported languages. Deeper multi-hop type resolution and language-server integration present further opportunities for enhancement. While the local evaluation evidence demonstrates useful behavior on current suites, broader agent-outcome trials are needed: patch correctness, verification pass rate, changed-file precision, token cost, wall time, and false-success rate.
+
+\section{Conclusion}
+BRE reframes LLM coding context as a bounded optimization problem over files, signals, representations, diagnostics, and budgets. The implemented engine provides deterministic trays, signal traces, greedy budget enforcement, diagnostics, MMKP-style representation selection, and momentum-backed adaptive feedback. The formal model presented here forms a reusable optimizer that can compare scoring policies, solve a principled multi-choice budget problem, and learn from compiler feedback without saturating or hiding attribution gaps.
+
+\bibliographystyle{unsrt}
+\bibliography{formal-bounded-context-selection}
+
+\end{document}

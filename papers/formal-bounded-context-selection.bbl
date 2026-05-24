@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{liu2024lost}
+Nelson~F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua,
+  Fabio Petroni, and Percy Liang.
+\newblock Lost in the middle: How language models use long contexts.
+\newblock {\em Transactions of the Association for Computational Linguistics},
+  12:157--173, 2024.
+
+\bibitem{lewis2020retrieval}
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
+  Karpukhin, Naman Goyal, Heinrich K{\"u}ttler, Mike Lewis, Wen tau Yih, Tim
+  Rockt{\"a}schel, Sebastian Riedel, and Douwe Kiela.
+\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2020.
+
+\bibitem{akbar2001heuristic}
+Md~Mostofa Akbar, Eric~G. Manning, Gholamali~C. Shoja, and Shahadat Khan.
+\newblock Heuristic solutions for the multiple-choice multi-dimension knapsack
+  problem.
+\newblock In {\em International Conference on Computational Science}, pages
+  659--668, 2001.
+
+\bibitem{jiang2023llmlingua}
+Huiqiang Jiang, Qianhui Wu, Chin-Yew Lin, Yuqing Yang, and Lili Qiu.
+\newblock {LLML}ingua: Compressing prompts for accelerated inference of large
+  language models.
+\newblock In {\em Proceedings of the Conference on Empirical Methods in Natural
+  Language Processing}, pages 13358--13376, 2023.
+
+\bibitem{parisotto2017neuro}
+Emilio Parisotto, Abdel rahman Mohamed, Rishabh Singh, Lihong Li, Dengyong
+  Zhou, and Pushmeet Kohli.
+\newblock Neuro-symbolic program synthesis.
+\newblock In {\em International Conference on Learning Representations}, 2017.
+
+\bibitem{wei2025webagent}
+Zhepei Wei, Wenlin Yao, Yao Liu, Weizhi Zhang, Qin Lu, Liang Qiu, Changlong Yu,
+  Puyang Xu, Chao Zhang, Bing Yin, Hyokun Yun, and Lihong Li.
+\newblock {W}eb{A}gent-{R}1: Training web agents via end-to-end multi-turn
+  reinforcement learning.
+\newblock In {\em Proceedings of the Conference on Empirical Methods in Natural
+  Language Processing}, 2025.
+
+\end{thebibliography}

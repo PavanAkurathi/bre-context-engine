@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "purpose": "Synthetic patch-outcome tasks for comparing baseline context against BRE context.",
+  "tasks": [
+    {
+      "id": "secure_startup_modules",
+      "description": "Agent must update imported dependency modules rather than hardcoding the active file.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Enable secure startup mode.",
+        "acceptance_criteria": [
+          "startup_message() must return secure:secure.",
+          "Update the connection and pool modules instead of hardcoding the result in src/main.rs."
+        ],
+        "assumptions": [],
+        "non_goals": [
+          "Do not edit tests to make them pass."
+        ],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "[package]\nname = \"agent_secure_startup\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+        "src/main.rs": "mod db;\nuse crate::db::{connection, pool};\n\npub fn startup_message() -> String {\n    format!(\"{}:{}\", connection::mode(), pool::mode())\n}\n\nfn main() {\n    println!(\"{}\", startup_message());\n}\n\n#[cfg(test)]\nmod tests {\n    #[test]\n    fn secure_startup_mode_enabled() {\n        assert_eq!(super::startup_message(), \"secure:secure\");\n    }\n}\n",
+        "src/db/mod.rs": "pub mod connection;\npub mod pool;\n",
+        "src/db/connection.rs": "pub fn mode() -> &'static str {\n    \"plain\"\n}\n",
+        "src/db/pool.rs": "pub fn mode() -> &'static str {\n    \"plain\"\n}\n"
+      },
+      "oracle_files": [
+        "src/db/connection.rs",
+        "src/db/pool.rs"
+      ],
+      "required_changed_files": [
+        "src/db/connection.rs",
+        "src/db/pool.rs"
+      ],
+      "forbidden_changed_files": [
+        "bre.json",
+        "src/main.rs"
+      ],
+      "verification_commands": [
+        "cargo test --quiet"
+      ]
+    },
+    {
+      "id": "release_workflow_runs_tests",
+      "description": "Agent must update a critical workflow file far from the active source file.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Make the release workflow run the test suite before publishing.",
+        "acceptance_criteria": [
+          "The release workflow must run cargo test.",
+          "Do not change application source files to satisfy the workflow check."
+        ],
+        "assumptions": [],
+        "non_goals": [
+          "Do not edit the verification script."
+        ],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "[package]\nname = \"agent_release_workflow\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+        "src/main.rs": "fn main() {\n    println!(\"release workflow demo\");\n}\n",
+        ".github/workflows/release.yaml": "name: release\non: [push]\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: cargo check\n      - run: cargo publish --dry-run\n",
+        "scripts/verify_workflow.py": "from pathlib import Path\ncontent = Path('.github/workflows/release.yaml').read_text()\nassert 'cargo test' in content, 'release workflow must run cargo test'\nassert 'cargo check' not in content, 'release workflow should not stop at cargo check'\n"
+      },
+      "oracle_files": [
+        ".github/workflows/release.yaml"
+      ],
+      "required_changed_files": [
+        ".github/workflows/release.yaml"
+      ],
+      "forbidden_changed_files": [
+        "bre.json",
+        "src/main.rs",
+        "scripts/verify_workflow.py"
+      ],
+      "verification_commands": [
+        "python3 scripts/verify_workflow.py"
+      ]
+    }
+  ]
+}

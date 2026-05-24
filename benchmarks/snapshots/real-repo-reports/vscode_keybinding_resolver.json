@@ -1,0 +1,3307 @@
+{
+  "branch": "main",
+  "commit": "a74acf03",
+  "diagnostic_count": 0,
+  "max_tokens": 60000,
+  "repo": "microsoft/vscode",
+  "report": {
+    "context": {
+      "active_tokens": 9313,
+      "budget_action": "trimmed_to_token_budget",
+      "counts": {
+        "active": 1,
+        "background": 14112,
+        "watching": 35
+      },
+      "ejected_files": 288,
+      "final_tokens": 50992,
+      "initial_tokens": 844520,
+      "loaded_files": 36,
+      "max_loaded_files": 36,
+      "max_tokens": 60000,
+      "scoring_policy": {
+        "mode": "max"
+      },
+      "skeletonized_files": 3
+    },
+    "diagnostics": {
+      "adapters": [],
+      "emitted_errors": 0,
+      "ignored_errors": 0,
+      "ignored_patterns": 0,
+      "project_types": [],
+      "raw_errors": 0,
+      "skipped": true
+    },
+    "file_traces": [
+      {
+        "path": "src/vs/workbench/services/keybinding/browser/keybindingService.ts",
+        "representation": "full",
+        "signals": {},
+        "tray": "active"
+      },
+      {
+        "path": "extensions/copilot/src/extension/completions-core/vscode-node/lib/src/util/event.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/browser/canIUse.ts",
+        "representation": "full",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/browser/keyboardEvent.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 158,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/browser/window.ts",
+        "representation": "full",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/common/event.ts",
+        "representation": "skeleton",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/common/keybindingLabels.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/common/keybindingParser.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/base/common/keybindings.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 148,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/editor/common/languages/modesRegistry.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/instantiation/common/extensions.ts",
+        "representation": "full",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/jsonschemas/common/jsonContributionRegistry.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 138,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keybinding/common/abstractKeybindingService.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keybinding/common/keybinding.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 148,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keybinding/common/keybindingResolver.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keybinding/common/keybindingsRegistry.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 158,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keybinding/common/resolvedKeybindingItem.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keyboardLayout/common/keyboardLayout.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/keyboardLayout/common/keyboardMapper.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/registry/common/platform.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/platform/uriIdentity/common/uriIdentity.ts",
+        "representation": "full",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHostQuickDiff.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHostUrls.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/contrib/accessibility/browser/accessibleViewKeybindingResolver.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/electron-browser/actions/debugAgentHostAction.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/electron-browser/extensionsActions.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/chat/browser/terminalChatAccessibleView.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/actions/common/menusExtensionPoint.ts",
+        "representation": "skeleton",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 138,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/common/extensions.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/common/extensionsRegistry.ts",
+        "representation": "skeleton",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 138,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/host/browser/host.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/keybinding/browser/navigatorKeyboard.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "active_parent": true,
+          "ast_dependency": true,
+          "symbol_score": 138,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/keybinding/browser/unboundCommands.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "active_parent": true,
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/keybinding/common/keybindingIO.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 148,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/request/electron-browser/requestService.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "src/vs/workbench/services/userDataProfile/common/userDataProfile.ts",
+        "representation": "full",
+        "score": 248,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 128,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": ".github/workflows/api-proposal-version-check.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/chat-lib-package.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/chat-perf.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/component-fixtures.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/copilot-setup-steps.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/monaco-editor.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/no-engineering-system-changes.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr-darwin-test.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr-linux-cli-test.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr-linux-test.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr-node-modules.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr-win32-test.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/pr.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/sessions-e2e.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": ".github/workflows/telemetry.yml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "extensions/copilot/docs/monitoring/docker-compose.yaml",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "extensions/copilot/src/extension/completions-core/vscode-node/extension/src/vscodeInlineCompletionItemProvider.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "extensions/copilot/src/util/vs/base/common/event.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "extensions/vscode-colorize-tests/test/colorize-fixtures/Dockerfile",
+        "representation": "omitted",
+        "score": 58,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "package.json",
+        "representation": "omitted",
+        "score": 113,
+        "signals": {
+          "active_manifest": true,
+          "critical_file": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/browser/browser.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/browser/dom.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/arrays.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/async.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/json.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/jsonSchema.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/keyCodes.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/lifecycle.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/objects.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/platform.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/base/common/resources.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/editor/common/editorContextKeys.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/nls.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/action/common/action.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/actions/common/actions.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/commands/common/commands.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/configuration/common/configurationRegistry.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/contextkey/common/contextkey.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/extensions/common/extensions.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/files/common/files.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/log/common/log.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/notification/common/notification.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/telemetry/common/telemetry.ts",
+        "representation": "omitted",
+        "score": 148,
+        "signals": {
+          "ast_dependency": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/theme/common/iconRegistry.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/platform/theme/common/tokenClassificationRegistry.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/browser/mainThreadCLICommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/browser/mainThreadLanguageFeatures.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/browser/mainThreadLogService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/browser/mainThreadMcp.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHost.api.impl.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHostAuthentication.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHostDebugService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extHostTypes.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/common/extensionHostMain.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/node/extHostExtensionService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/api/worker/extHostExtensionService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/developerActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/helpActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/layoutActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/quickAccessActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/workspaceActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/actions/workspaceCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/dnd.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/editor.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/layout.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/panecomposite.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/editor/diffEditorCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/editor/editorActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/editor/editorCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/editor/editorStatus.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/notifications/notificationAccessibleView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/notifications/notificationsCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/panel/panelActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/titlebar/menubarControl.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/titlebar/titlebarActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/views/treeView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/views/viewPane.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/parts/views/viewPaneContainer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/web.main.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/workbench.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/browser/workbench.zenMode.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/common/configuration.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/common/contributions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/accessibility/browser/accessibleView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/accessibility/browser/editorAccessibilityHelp.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/browserView/electron-browser/browserEditor.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/browserView/electron-browser/browserViewActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/browserView/electron-browser/features/browserTabManagementFeatures.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/accessibility/chatAccessibilityProvider.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatAgentRecommendationActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatContextActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatContinueInAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatExecuteActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatImportExport.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatLanguageModelActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatOpenAgentDebugPanelAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatPluginActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatToolActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/chatToolPicker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/createPluginAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/exportAgentHostDebugLogsAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/actions/openCopilotCliStateFileAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/agentSessions/agentHost/agentHostCustomAgentPicker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/agentSessions/agentSessionsActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/agentSessions/agentSessionsOpener.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/agentSessions/agentSessionsViewer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/aiCustomization/aiCustomizationItemSource.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/aiCustomization/aiCustomizationManagement.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/aiCustomization/aiCustomizationManagementEditor.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/aiCustomization/aiCustomizationWorkspaceService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/attachments/chatAttachmentWidgets.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/attachments/chatDynamicVariables.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatEditing/chatEditingOperations.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatEditing/chatEditingTextModelChangeService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatSessions/chatSessions.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatSetup/chatSetupContributions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatSetup/chatSetupGrowthSession.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatSetup/chatSetupProviders.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatStatus/chatStatusDashboard.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/chatTipService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/createSlashCommandsUsageTracker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/hookActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/newPromptFileActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/pickers/askForPromptName.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/pickers/askForPromptSourceFolder.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/pickers/promptFilePickers.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/runPromptAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/promptSyntax/saveAsPromptFileActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/tools/toolSetsContribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatAnonymousRateLimitedPart.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatInlineAnchorWidget.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatQuotaExceededPart.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatReferencesContentPart.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatResourceGroupWidget.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatTipContentPart.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/toolInvocationParts/chatTerminalToolProgressPart.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/chatListRenderer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/input/chatModelPicker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/browser/widget/input/editor/chatInputCompletions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/common/languageModels.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/common/promptSyntax/utils/promptFilesLocator.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/electron-browser/actions/chatExportZip.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/electron-browser/actions/exportAgentTracesDb.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/chat/electron-browser/actions/voiceChatActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/codeEditor/browser/diffEditorAccessibilityHelp.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/codeEditor/browser/editorLineNumberMenu.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/codeEditor/electron-browser/startDebugTextMate.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/commands/common/commands.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/comments/browser/comments.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/comments/browser/commentsAccessibleView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/comments/browser/commentsEditorContribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/comments/browser/commentsTreeViewer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/callStackView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/debugCommands.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/debugEditorActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/debugSessionPicker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/debugToolBar.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/variablesView.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/debug/browser/watchExpressionsView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/editSessions/browser/editSessionsViews.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/emmet/browser/emmetActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/browser/extensionFeaturesTab.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/browser/extensions.contribution.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/browser/extensionsActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/browser/extensionsWidgets.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/browser/extensionsWorkbenchService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/common/extensionsUtils.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/electron-browser/debugExtensionHostAction.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/extensions/electron-browser/runtimeExtensionsEditor.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/files/browser/fileActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/files/browser/fileCommands.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/files/browser/views/explorerView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/files/browser/views/openEditorsView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/format/browser/formatActionsMultiple.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/format/browser/formatActionsNone.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/imageCarousel/browser/imageCarousel.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/inlineChat/browser/inlineChatActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/interactive/browser/interactive.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/issue/browser/issueReporterKeybindings.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/issue/browser/issueService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/issue/electron-browser/issueService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/keybindings/browser/keybindings.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/languageDetection/browser/languageDetection.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/localHistory/browser/localHistoryCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mcp/browser/mcpCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mcp/browser/mcpMigration.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mcp/browser/mcpServerWidgets.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mcp/common/mcpServer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mergeEditor/browser/commands/devCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mergeEditor/browser/view/editors/resultCodeEditorView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/mergeEditor/electron-browser/devCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/contrib/cellCommands/cellCommands.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/contrib/clipboard/notebookClipboard.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/contrib/saveParticipants/saveParticipants.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/controller/cellOutputActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/controller/chat/cellChatActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/controller/coreActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/controller/editActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/controller/notebookIndentationActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/services/notebookKeymapServiceImpl.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/notebook/browser/viewParts/notebookKernelView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/output/browser/output.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/keybindingsEditor.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/keyboardLayoutPicker.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/preferences.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/preferencesActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/preferencesRenderers.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/preferencesWidgets.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/settingsEditor2.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/browser/settingsTree.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/preferences/common/preferences.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/remote/browser/remoteIndicator.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/remote/browser/tunnelView.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/remoteTunnel/electron-browser/remoteTunnel.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/replNotebook/browser/repl.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/scm/browser/menus.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/scm/browser/scm.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/scm/browser/scmAccessibilityHelp.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/scm/browser/scmHistoryViewPane.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/scm/browser/scmInput.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/search/browser/searchActionsBase.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/search/browser/searchActionsFind.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/search/common/search.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/searchEditor/browser/searchEditorActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/snippets/browser/commands/configureSnippets.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/tasks/common/taskConfiguration.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminal/browser/remoteTerminalBackend.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminal/browser/terminalActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminal/browser/terminalInstance.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminal/browser/terminalMenus.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminal/browser/terminalTelemetry.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/chatAgentTools/browser/tools/runInTerminalTool.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/chatAgentTools/common/terminalSandboxService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/developer/browser/terminal.developer.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/find/browser/terminalFindAccessibilityHelp.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/history/common/history.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/sendSequence/browser/terminal.sendSequence.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/terminalContrib/voice/browser/terminalVoiceActions.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/testing/browser/codeCoverageDecorations.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/testing/browser/testExplorerActions.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/testing/browser/testResultsView/testResultsViewContent.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/testing/browser/testing.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/themes/browser/themes.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/timeline/browser/timelinePane.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/update/browser/update.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/update/browser/update.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/update/browser/updateTitleBarEntry.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/update/browser/updateTooltip.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/userDataProfile/browser/userDataProfile.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/userDataSync/browser/userDataSync.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/userDataSync/browser/userDataSyncViews.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/userDataSync/electron-browser/userDataSync.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/webview/browser/overlayWebview.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/webview/browser/resourceLoading.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/webview/browser/webviewElement.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/contrib/workspaces/browser/workspaces.contribution.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/electron-browser/desktop.main.ts",
+        "representation": "omitted",
+        "score": 158,
+        "signals": {
+          "symbol_score": 158,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/electron-browser/window.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/authentication/browser/authenticationExtensionsService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/authentication/browser/authenticationMcpService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/auxiliaryWindow/electron-browser/auxiliaryWindowService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/configurationResolver/browser/baseConfigurationResolverService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/editor/browser/editorResolverService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensionManagement/browser/extensionBisect.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensionManagement/browser/webExtensionsScannerService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/browser/extensionUrlHandler.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/common/abstractExtensionService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/common/extensionManifestPropertiesService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/common/extensionStorageMigration.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 148,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/extensions/electron-browser/nativeExtensionService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/host/browser/browserHostService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/keybinding/browser/keyboardLayoutService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "active_parent": true,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/lifecycle/browser/lifecycleService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/lifecycle/electron-browser/lifecycleService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/localization/browser/localeService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/output/common/output.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/preferences/browser/keybindingsEditorModel.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/preferences/common/preferences.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/preferences/common/preferencesModels.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/request/browser/requestService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/textfile/common/textFileEditorModelManager.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/themes/browser/cssExtensionPoint.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 128,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      },
+      {
+        "path": "src/vs/workbench/services/views/browser/viewsService.ts",
+        "representation": "omitted",
+        "score": 150,
+        "signals": {
+          "symbol_score": 138,
+          "task_term_matched": true
+        },
+        "tray": "background"
+      }
+    ],
+    "repo_root": "<repo_root>",
+    "weights": {
+      "changed": false,
+      "feedback_applied": false,
+      "file_exists_after_run": true,
+      "weights_path": "<repo_root>/bre_weights.json"
+    }
+  },
+  "selected_paths": {
+    "active": [
+      "src/vs/workbench/services/keybinding/browser/keybindingService.ts"
+    ],
+    "background_count": 14112,
+    "watching": [
+      "extensions/copilot/src/extension/completions-core/vscode-node/lib/src/util/event.ts",
+      "src/vs/base/browser/canIUse.ts",
+      "src/vs/base/browser/keyboardEvent.ts",
+      "src/vs/base/browser/window.ts",
+      "src/vs/base/common/event.ts",
+      "src/vs/base/common/keybindingLabels.ts",
+      "src/vs/base/common/keybindingParser.ts",
+      "src/vs/base/common/keybindings.ts",
+      "src/vs/editor/common/languages/modesRegistry.ts",
+      "src/vs/platform/instantiation/common/extensions.ts",
+      "src/vs/platform/jsonschemas/common/jsonContributionRegistry.ts",
+      "src/vs/platform/keybinding/common/abstractKeybindingService.ts",
+      "src/vs/platform/keybinding/common/keybinding.ts",
+      "src/vs/platform/keybinding/common/keybindingResolver.ts",
+      "src/vs/platform/keybinding/common/keybindingsRegistry.ts",
+      "src/vs/platform/keybinding/common/resolvedKeybindingItem.ts",
+      "src/vs/platform/keyboardLayout/common/keyboardLayout.ts",
+      "src/vs/platform/keyboardLayout/common/keyboardMapper.ts",
+      "src/vs/platform/registry/common/platform.ts",
+      "src/vs/platform/uriIdentity/common/uriIdentity.ts",
+      "src/vs/workbench/api/common/extHostQuickDiff.ts",
+      "src/vs/workbench/api/common/extHostUrls.ts",
+      "src/vs/workbench/contrib/accessibility/browser/accessibleViewKeybindingResolver.ts",
+      "src/vs/workbench/contrib/chat/electron-browser/actions/debugAgentHostAction.ts",
+      "src/vs/workbench/contrib/extensions/electron-browser/extensionsActions.ts",
+      "src/vs/workbench/contrib/terminalContrib/chat/browser/terminalChatAccessibleView.ts",
+      "src/vs/workbench/services/actions/common/menusExtensionPoint.ts",
+      "src/vs/workbench/services/extensions/common/extensions.ts",
+      "src/vs/workbench/services/extensions/common/extensionsRegistry.ts",
+      "src/vs/workbench/services/host/browser/host.ts",
+      "src/vs/workbench/services/keybinding/browser/navigatorKeyboard.ts",
+      "src/vs/workbench/services/keybinding/browser/unboundCommands.ts",
+      "src/vs/workbench/services/keybinding/common/keybindingIO.ts",
+      "src/vs/workbench/services/request/electron-browser/requestService.ts",
+      "src/vs/workbench/services/userDataProfile/common/userDataProfile.ts"
+    ]
+  },
+  "task_id": "vscode_keybinding_resolver",
+  "url": "https://github.com/microsoft/vscode.git"
+}

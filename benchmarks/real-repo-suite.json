@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "purpose": "Live stress trials against shallow clones of open-source repositories that stress dependency resolution, context precision, and large-repo boundaries.",
+  "tasks": [
+    {
+      "id": "ggez_input_keyboard",
+      "full_name": "ggez/ggez",
+      "repo": "https://github.com/ggez/ggez.git",
+      "branch": "master",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Improve keyboard repeat and pressed-key behavior.",
+        "acceptance_criteria": [
+          "The agent must inspect keyboard input state handling.",
+          "The agent must inspect the event loop path that delivers keyboard events."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "examples/input_test.rs"
+        ]
+      },
+      "oracle_files": [
+        "src/event.rs",
+        "src/input/keyboard.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 12
+    },
+    {
+      "id": "macroquad_prelude_input",
+      "full_name": "not-fl3/macroquad",
+      "repo": "https://github.com/not-fl3/macroquad.git",
+      "branch": "master",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Improve keyboard input behavior in the input keys example.",
+        "acceptance_criteria": [
+          "The agent must inspect KeyCode and is_key_down definitions.",
+          "Prelude re-exports unrelated to input should not dominate the context tray."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "examples/input_keys.rs"
+        ]
+      },
+      "oracle_files": [
+        "src/input.rs",
+        "src/prelude.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 8
+    },
+    {
+      "id": "avian_collision_layers",
+      "full_name": "avianphysics/avian",
+      "repo": "https://github.com/avianphysics/avian.git",
+      "branch": "main",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Change collision layer behavior.",
+        "acceptance_criteria": [
+          "The agent must inspect CollisionLayers and LayerMask before editing.",
+          "The agent must see the active crate manifest because the crate uses shared source layout."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "crates/avian2d/examples/collision_layers.rs"
+        ]
+      },
+      "oracle_files": [
+        "crates/avian2d/Cargo.toml",
+        "src/collision/collider/layers.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 12
+    },
+    {
+      "id": "tetra_keyboard_input",
+      "full_name": "17cupsofcoffee/tetra",
+      "repo": "https://github.com/17cupsofcoffee/tetra.git",
+      "branch": "main",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Improve keyboard input behavior in the keyboard example.",
+        "acceptance_criteria": [
+          "The agent must inspect is_key_down, get_keys_pressed, get_keys_released, and keyboard state definitions.",
+          "The agent must inspect the public input module that re-exports keyboard APIs."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "examples/keyboard.rs"
+        ]
+      },
+      "oracle_files": [
+        "src/input.rs",
+        "src/input/keyboard.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 12
+    },
+    {
+      "id": "boardgameio_core_reducer",
+      "full_name": "boardgameio/boardgame.io",
+      "repo": "https://github.com/boardgameio/boardgame.io.git",
+      "branch": "main",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Improve move validation and undo behavior in the core reducer.",
+        "acceptance_criteria": [
+          "The agent must inspect action creators, action types, game configuration processing, plugin validation, and shared State/Game types."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/core/reducer.ts"
+        ]
+      },
+      "oracle_files": [
+        "src/core/action-creators.ts",
+        "src/core/action-types.ts",
+        "src/core/errors.ts",
+        "src/core/game.ts",
+        "src/plugins/main.ts",
+        "src/types.ts"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 24
+    },
+    {
+      "id": "valence_command_graph",
+      "full_name": "valence-rs/valence",
+      "repo": "https://github.com/valence-rs/valence.git",
+      "branch": "main",
+      "max_tokens": 30000,
+      "bre_config": {
+        "goal": "Improve command graph execution and command tree handling in the command example.",
+        "acceptance_criteria": [
+          "The agent must inspect CommandGraphBuilder, CommandHandlerPlugin, CommandPlugin, CommandResultEvent, and the derive Command macro expansion path.",
+          "The agent must see the workspace command crate and macro crate implementation, not only the example."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "examples/command.rs"
+        ]
+      },
+      "oracle_files": [
+        "crates/valence_command/src/graph.rs",
+        "crates/valence_command/src/handler.rs",
+        "crates/valence_command/src/lib.rs",
+        "crates/valence_command/src/manager.rs",
+        "crates/valence_command/src/parsers/entity_selector.rs",
+        "crates/valence_command/src/scopes.rs",
+        "crates/valence_command_macros/src/lib.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 24
+    },
+    {
+      "id": "vscode_keybinding_resolver",
+      "full_name": "microsoft/vscode",
+      "repo": "https://github.com/microsoft/vscode.git",
+      "branch": "main",
+      "max_tokens": 60000,
+      "bre_config": {
+        "goal": "Improve workbench keybinding conflict resolution and keyboard event dispatch behavior.",
+        "acceptance_criteria": [
+          "The agent must inspect WorkbenchKeybindingService and the platform KeybindingResolver.",
+          "The agent must inspect keybinding registry/item models and keyboard layout mapping because dispatch depends on resolved chords.",
+          "The context tray should not be dominated by keyboard layout data files or unrelated workbench keybinding UI files."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/vs/workbench/services/keybinding/browser/keybindingService.ts"
+        ]
+      },
+      "oracle_files": [
+        "src/vs/platform/keybinding/common/abstractKeybindingService.ts",
+        "src/vs/platform/keybinding/common/keybinding.ts",
+        "src/vs/platform/keybinding/common/keybindingResolver.ts",
+        "src/vs/platform/keybinding/common/keybindingsRegistry.ts",
+        "src/vs/platform/keybinding/common/resolvedKeybindingItem.ts",
+        "src/vs/platform/keyboardLayout/common/keyboardLayout.ts",
+        "src/vs/platform/keyboardLayout/common/keyboardMapper.ts",
+        "src/vs/workbench/services/keybinding/browser/keyboardLayoutService.ts",
+        "src/vs/workbench/services/keybinding/browser/navigatorKeyboard.ts",
+        "src/vs/workbench/services/keybinding/common/keybindingIO.ts"
+      ],
+      "baseline_files": [],
+      "forbidden_loaded_prefixes": [
+        "src/vs/workbench/services/keybinding/browser/keyboardLayouts/"
+      ],
+      "min_bre_recall": 0.8,
+      "max_loaded_files": 36
+    },
+    {
+      "id": "opennext_cloudflare_build_pipeline",
+      "full_name": "opennextjs/opennextjs-cloudflare",
+      "repo": "https://github.com/opennextjs/opennextjs-cloudflare.git",
+      "branch": "main",
+      "max_tokens": 60000,
+      "bre_config": {
+        "goal": "Improve the OpenNext Cloudflare build pipeline for Worker bundling and runtime patch behavior.",
+        "acceptance_criteria": [
+          "The agent must inspect the top-level build orchestration, Cloudflare bundleServer implementation, and server bundle generation path.",
+          "The agent must inspect compile steps for init, env files, images, skew protection, durable objects, and cache assets.",
+          "The context tray should not be dominated by example applications or generated-style template assets."
+        ],
+        "assumptions": [
+          "This is a TypeScript monorepo package for OpenNext's Cloudflare adapter."
+        ],
+        "non_goals": [
+          "Do not inspect unrelated example applications unless directly required by the adapter implementation."
+        ],
+        "active_files": [
+          "packages/cloudflare/src/cli/build/build.ts"
+        ]
+      },
+      "oracle_files": [
+        "packages/cloudflare/package.json",
+        "packages/cloudflare/src/api/config.ts",
+        "packages/cloudflare/src/cli/build/bundle-server.ts",
+        "packages/cloudflare/src/cli/build/open-next/compile-cache-assets-manifest.ts",
+        "packages/cloudflare/src/cli/build/open-next/compile-env-files.ts",
+        "packages/cloudflare/src/cli/build/open-next/compile-images.ts",
+        "packages/cloudflare/src/cli/build/open-next/compile-init.ts",
+        "packages/cloudflare/src/cli/build/open-next/compile-skew-protection.ts",
+        "packages/cloudflare/src/cli/build/open-next/compileDurableObjects.ts",
+        "packages/cloudflare/src/cli/build/open-next/createServerBundle.ts",
+        "packages/cloudflare/src/cli/build/utils/middleware.ts",
+        "packages/cloudflare/src/cli/build/utils/version.ts",
+        "packages/cloudflare/src/cli/project-options.ts",
+        "packages/cloudflare/src/cli/utils/nextjs-support.ts"
+      ],
+      "baseline_files": [],
+      "forbidden_loaded_prefixes": [
+        "examples/",
+        "create-cloudflare/",
+        "packages/cloudflare/templates/"
+      ],
+      "min_bre_recall": 1.0,
+      "max_loaded_files": 36
+    }
+  ]
+}

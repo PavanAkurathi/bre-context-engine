@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "purpose": "Candidate real-world gaming/game-engine repositories for BRE benchmark trials.",
+  "selection_criteria": [
+    "Open-source GitHub repository verified with git ls-remote.",
+    "Gaming, game engine, game framework, physics, or game-server domain.",
+    "Primary language is Rust, TypeScript, or JavaScript so BRE can analyze imports today.",
+    "Archived repositories excluded."
+  ],
+  "repos": [
+    {
+      "full_name": "bevyengine/bevy",
+      "url": "https://github.com/bevyengine/bevy",
+      "language": "Rust",
+      "stars_observed": 46184,
+      "size_kb_observed": 167414,
+      "default_branch": "main",
+      "trial_priority": "heavy",
+      "why_benchmark": "Large Rust ECS game engine with many crates, features, examples, and config surfaces.",
+      "starter_task": "Pick one focused example or subsystem and test whether BRE pulls the owning plugin/module plus Cargo feature context."
+    },
+    {
+      "full_name": "FyroxEngine/Fyrox",
+      "url": "https://github.com/FyroxEngine/Fyrox",
+      "language": "Rust",
+      "stars_observed": 9366,
+      "size_kb_observed": 391397,
+      "default_branch": "master",
+      "trial_priority": "heavy",
+      "why_benchmark": "Production-sized 2D/3D Rust game engine with editor, demos, and workspace complexity.",
+      "starter_task": "Target a small demo or scene-loading path and measure whether BRE avoids dragging the whole engine into context."
+    },
+    {
+      "full_name": "ggez/ggez",
+      "url": "https://github.com/ggez/ggez",
+      "language": "Rust",
+      "stars_observed": 4632,
+      "size_kb_observed": 6098,
+      "default_branch": "master",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Moderate-size Rust 2D framework; good for dependency and examples-to-core mapping.",
+      "starter_task": "Change an input/audio/windowing behavior and verify BRE selects the core module, example, Cargo.toml, and tests."
+    },
+    {
+      "full_name": "not-fl3/macroquad",
+      "url": "https://github.com/not-fl3/macroquad",
+      "language": "Rust",
+      "stars_observed": 4467,
+      "size_kb_observed": 19843,
+      "default_branch": "master",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Rust cross-platform game library with examples and platform-specific code.",
+      "starter_task": "Target one example or input/rendering path and check whether BRE follows imports into the relevant platform/core files."
+    },
+    {
+      "full_name": "avianphysics/avian",
+      "url": "https://github.com/avianphysics/avian",
+      "language": "Rust",
+      "stars_observed": 2945,
+      "size_kb_observed": 10013,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Bevy-focused physics engine with ECS components and plugin boundaries.",
+      "starter_task": "Change a collision or rigid-body behavior and check whether BRE selects component, plugin, and test/example context."
+    },
+    {
+      "full_name": "godot-rust/gdext",
+      "url": "https://github.com/godot-rust/gdext",
+      "language": "Rust",
+      "stars_observed": 4807,
+      "size_kb_observed": 10087,
+      "default_branch": "master",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Rust bindings for Godot 4; good for FFI/bindings boundary context.",
+      "starter_task": "Target a binding API behavior and verify BRE selects generated/binding boundary context without loading generated bulk."
+    },
+    {
+      "full_name": "Pumpkin-MC/Pumpkin",
+      "url": "https://github.com/Pumpkin-MC/Pumpkin",
+      "language": "Rust",
+      "stars_observed": 7611,
+      "size_kb_observed": 106402,
+      "default_branch": "master",
+      "trial_priority": "medium",
+      "why_benchmark": "Minecraft server in Rust; real game-server domain with protocol, world, and config concerns.",
+      "starter_task": "Target a command/protocol handling path and measure whether BRE pulls protocol definitions and tests."
+    },
+    {
+      "full_name": "valence-rs/valence",
+      "url": "https://github.com/valence-rs/valence",
+      "language": "Rust",
+      "stars_observed": 3217,
+      "size_kb_observed": 5751,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Rust Minecraft server framework; smaller than Pumpkin and good for protocol/context tests.",
+      "starter_task": "Change packet or entity behavior and check whether BRE selects protocol, entity, and example context."
+    },
+    {
+      "full_name": "17cupsofcoffee/tetra",
+      "url": "https://github.com/17cupsofcoffee/tetra",
+      "language": "Rust",
+      "stars_observed": 1010,
+      "size_kb_observed": 10127,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Small Rust 2D game framework, suitable for fast trial loops.",
+      "starter_task": "Target a graphics/input module and verify BRE finds the core module plus example/test coverage."
+    },
+    {
+      "full_name": "thephet/BevyRoguelike",
+      "url": "https://github.com/thephet/BevyRoguelike",
+      "language": "Rust",
+      "stars_observed": 241,
+      "size_kb_observed": 495,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Actual small Bevy game, not just an engine; good for gameplay-system context.",
+      "starter_task": "Change combat or map behavior and check whether BRE pulls the relevant Bevy systems/resources."
+    },
+    {
+      "full_name": "fishfolk/punchy",
+      "url": "https://github.com/fishfolk/punchy",
+      "language": "Rust",
+      "stars_observed": 305,
+      "size_kb_observed": 71309,
+      "default_branch": "master",
+      "trial_priority": "medium",
+      "why_benchmark": "Actual Bevy side-scroller game with gameplay code and assets.",
+      "starter_task": "Target a player movement/combat issue and measure whether BRE selects systems, components, and config."
+    },
+    {
+      "full_name": "BabylonJS/Babylon.js",
+      "url": "https://github.com/BabylonJS/Babylon.js",
+      "language": "TypeScript",
+      "stars_observed": 25548,
+      "size_kb_observed": 1450613,
+      "default_branch": "master",
+      "trial_priority": "heavy",
+      "why_benchmark": "Large TypeScript 3D engine; useful stress test for context budgets and monorepo scale.",
+      "starter_task": "Target one package/subsystem and test whether BRE can avoid massive unrelated context."
+    },
+    {
+      "full_name": "boardgameio/boardgame.io",
+      "url": "https://github.com/boardgameio/boardgame.io",
+      "language": "TypeScript",
+      "stars_observed": 12335,
+      "size_kb_observed": 14125,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Turn-based game state and multiplayer framework; good for reducer/state/test context.",
+      "starter_task": "Target move validation or multiplayer state sync and check whether BRE selects reducer, server, and test files."
+    },
+    {
+      "full_name": "piqnt/planck.js",
+      "url": "https://github.com/piqnt/planck.js",
+      "language": "TypeScript",
+      "stars_observed": 5245,
+      "size_kb_observed": 30504,
+      "default_branch": "master",
+      "trial_priority": "first_pass",
+      "why_benchmark": "2D physics engine in TypeScript; useful for algorithmic code plus examples/tests.",
+      "starter_task": "Target collision/contact behavior and check whether BRE selects physics core and focused tests."
+    },
+    {
+      "full_name": "excaliburjs/Excalibur",
+      "url": "https://github.com/excaliburjs/Excalibur",
+      "language": "TypeScript",
+      "stars_observed": 2286,
+      "size_kb_observed": 643079,
+      "default_branch": "main",
+      "trial_priority": "medium",
+      "why_benchmark": "TypeScript 2D HTML5 game engine with real engine subsystems and docs/examples.",
+      "starter_task": "Target entity/input/collision behavior and measure whether BRE selects code, tests, and config."
+    },
+    {
+      "full_name": "kaplayjs/kaplay",
+      "url": "https://github.com/kaplayjs/kaplay",
+      "language": "TypeScript",
+      "stars_observed": 1539,
+      "size_kb_observed": 81522,
+      "default_branch": "master",
+      "trial_priority": "medium",
+      "why_benchmark": "JavaScript/TypeScript game library with examples and engine core.",
+      "starter_task": "Target sprite/input behavior and check whether BRE pulls the relevant source and examples."
+    },
+    {
+      "full_name": "Kaetram/Kaetram-Open",
+      "url": "https://github.com/Kaetram/Kaetram-Open",
+      "language": "TypeScript",
+      "stars_observed": 691,
+      "size_kb_observed": 843396,
+      "default_branch": "develop",
+      "trial_priority": "heavy",
+      "why_benchmark": "Actual open-source 2D MMORPG, useful for client/server gameplay context.",
+      "starter_task": "Target inventory/combat/network flow and test whether BRE selects both client and server ownership files."
+    },
+    {
+      "full_name": "playcanvas/engine",
+      "url": "https://github.com/playcanvas/engine",
+      "language": "JavaScript",
+      "stars_observed": 15855,
+      "size_kb_observed": 570640,
+      "default_branch": "main",
+      "trial_priority": "medium",
+      "why_benchmark": "WebGL/WebGPU/WebXR runtime with engine subsystems and examples.",
+      "starter_task": "Target rendering/material/input behavior and verify BRE selects core engine files and tests."
+    },
+    {
+      "full_name": "melonjs/melonJS",
+      "url": "https://github.com/melonjs/melonJS",
+      "language": "JavaScript",
+      "stars_observed": 6290,
+      "size_kb_observed": 123275,
+      "default_branch": "master",
+      "trial_priority": "medium",
+      "why_benchmark": "Modern lightweight HTML5 game engine with JS/TS surface.",
+      "starter_task": "Target input, collision, or rendering behavior and measure context precision."
+    },
+    {
+      "full_name": "KilledByAPixel/LittleJS",
+      "url": "https://github.com/KilledByAPixel/LittleJS",
+      "language": "JavaScript",
+      "stars_observed": 4103,
+      "size_kb_observed": 17349,
+      "default_branch": "main",
+      "trial_priority": "first_pass",
+      "why_benchmark": "Small HTML5 game engine with low clone cost and fast smoke-test loops.",
+      "starter_task": "Target a compact engine behavior and check whether BRE can stay precise."
+    }
+  ]
+}

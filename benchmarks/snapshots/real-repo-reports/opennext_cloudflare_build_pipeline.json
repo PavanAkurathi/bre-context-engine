@@ -1,0 +1,335 @@
+{
+  "branch": "main",
+  "commit": "596f924",
+  "diagnostic_count": 0,
+  "max_tokens": 60000,
+  "repo": "opennextjs/opennextjs-cloudflare",
+  "report": {
+    "context": {
+      "active_tokens": 1035,
+      "budget_action": "within_budget",
+      "counts": {
+        "active": 1,
+        "background": 743,
+        "watching": 25
+      },
+      "ejected_files": 0,
+      "final_tokens": 22563,
+      "initial_tokens": 22563,
+      "loaded_files": 26,
+      "max_loaded_files": 36,
+      "max_tokens": 60000,
+      "scoring_policy": {
+        "mode": "max"
+      },
+      "skeletonized_files": 0
+    },
+    "diagnostics": {
+      "adapters": [],
+      "emitted_errors": 0,
+      "ignored_errors": 0,
+      "ignored_patterns": 0,
+      "project_types": [],
+      "raw_errors": 0,
+      "skipped": true
+    },
+    "file_traces": [
+      {
+        "path": "packages/cloudflare/src/cli/build/build.ts",
+        "representation": "full",
+        "signals": {},
+        "tray": "active"
+      },
+      {
+        "path": ".github/workflows/changesets.yml",
+        "representation": "full",
+        "score": 30,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": ".github/workflows/checks.yml",
+        "representation": "full",
+        "score": 30,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": ".github/workflows/playwright.yml",
+        "representation": "full",
+        "score": 30,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": ".github/workflows/prereleases.yml",
+        "representation": "full",
+        "score": 30,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "package.json",
+        "representation": "full",
+        "score": 30,
+        "signals": {
+          "critical_file": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/package.json",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "active_manifest": true,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/api/config.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 100,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/bundle-server.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "active_parent": true,
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compile-cache-assets-manifest.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compile-env-files.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compile-images.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compile-init.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compile-skew-protection.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/compileDurableObjects.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/open-next/createServerBundle.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/utils/middleware.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/build/utils/version.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/commands/build.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 110,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/commands/deploy.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 100,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/commands/populate-cache.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 100,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/commands/preview.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 100,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/commands/upload.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 100,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/project-options.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "symbol_score": 100,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/utils/create-wrangler-config.ts",
+        "representation": "full",
+        "score": 150,
+        "signals": {
+          "symbol_score": 100,
+          "task_term_matched": true
+        },
+        "tray": "watching"
+      },
+      {
+        "path": "packages/cloudflare/src/cli/utils/nextjs-support.ts",
+        "representation": "full",
+        "score": 220,
+        "signals": {
+          "ast_dependency": true,
+          "task_term_ast_matched": true
+        },
+        "tray": "watching"
+      }
+    ],
+    "repo_root": "<repo_root>",
+    "weights": {
+      "changed": false,
+      "feedback_applied": false,
+      "file_exists_after_run": false,
+      "weights_path": "<repo_root>/bre_weights.json"
+    }
+  },
+  "selected_paths": {
+    "active": [
+      "packages/cloudflare/src/cli/build/build.ts"
+    ],
+    "background_count": 743,
+    "watching": [
+      ".github/workflows/changesets.yml",
+      ".github/workflows/checks.yml",
+      ".github/workflows/playwright.yml",
+      ".github/workflows/prereleases.yml",
+      "package.json",
+      "packages/cloudflare/package.json",
+      "packages/cloudflare/src/api/config.ts",
+      "packages/cloudflare/src/cli/build/bundle-server.ts",
+      "packages/cloudflare/src/cli/build/open-next/compile-cache-assets-manifest.ts",
+      "packages/cloudflare/src/cli/build/open-next/compile-env-files.ts",
+      "packages/cloudflare/src/cli/build/open-next/compile-images.ts",
+      "packages/cloudflare/src/cli/build/open-next/compile-init.ts",
+      "packages/cloudflare/src/cli/build/open-next/compile-skew-protection.ts",
+      "packages/cloudflare/src/cli/build/open-next/compileDurableObjects.ts",
+      "packages/cloudflare/src/cli/build/open-next/createServerBundle.ts",
+      "packages/cloudflare/src/cli/build/utils/middleware.ts",
+      "packages/cloudflare/src/cli/build/utils/version.ts",
+      "packages/cloudflare/src/cli/commands/build.ts",
+      "packages/cloudflare/src/cli/commands/deploy.ts",
+      "packages/cloudflare/src/cli/commands/populate-cache.ts",
+      "packages/cloudflare/src/cli/commands/preview.ts",
+      "packages/cloudflare/src/cli/commands/upload.ts",
+      "packages/cloudflare/src/cli/project-options.ts",
+      "packages/cloudflare/src/cli/utils/create-wrangler-config.ts",
+      "packages/cloudflare/src/cli/utils/nextjs-support.ts"
+    ]
+  },
+  "task_id": "opennext_cloudflare_build_pipeline",
+  "url": "https://github.com/opennextjs/opennextjs-cloudflare.git"
+}

@@ -1,0 +1,5 @@
+/target/
+/bre_weights.json
+/test_repo/
+**/*.log
+.DS_Store

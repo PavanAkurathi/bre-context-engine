@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "purpose": "Enterprise-oriented pre-AI corpus candidates for BRE language and framework expansion. Use 2020-12-31 as the clean baseline and 2023-01-01 as the transition comparison point.",
+  "selection_criteria": [
+    "Open-source GitHub repository verified with git ls-remote.",
+    "Repository existed before or around the 2020 baseline where possible.",
+    "Represents languages and framework surfaces common in large enterprise systems.",
+    "Includes platform/config ecosystems such as Kubernetes, Kafka, Helm, Terraform, build systems, and application framework configuration."
+  ],
+  "repos": [
+    {
+      "full_name": "spring-projects/spring-boot",
+      "url": "https://github.com/spring-projects/spring-boot",
+      "default_branch": "main",
+      "language": "Java",
+      "framework_surfaces": ["Spring Boot", "Maven", "Gradle", "application.properties", "application.yml"],
+      "why_benchmark": "Canonical enterprise Java framework with auto-configuration, dependency injection, starters, Maven/Gradle builds, and application config conventions.",
+      "starter_task": "Target a web auto-configuration or actuator behavior and verify BRE pulls source, tests, build files, and application config boundaries."
+    },
+    {
+      "full_name": "spring-projects/spring-framework",
+      "url": "https://github.com/spring-projects/spring-framework",
+      "default_branch": "main",
+      "language": "Java",
+      "framework_surfaces": ["Spring Framework", "Gradle", "dependency injection", "MVC"],
+      "why_benchmark": "Core Java enterprise framework; useful for dependency-injection and framework-convention context tests.",
+      "starter_task": "Target an MVC or bean lifecycle path and measure whether BRE includes framework wiring and focused tests."
+    },
+    {
+      "full_name": "apache/kafka",
+      "url": "https://github.com/apache/kafka",
+      "default_branch": "trunk",
+      "language": "Java/Scala",
+      "framework_surfaces": ["Kafka", "Gradle", "producer.properties", "consumer.properties", "server.properties"],
+      "why_benchmark": "Enterprise event-streaming platform; context depends on producers, consumers, brokers, protocol definitions, and properties files.",
+      "starter_task": "Target consumer group assignment or producer config behavior and verify BRE pulls protocol, config, tests, and build context."
+    },
+    {
+      "full_name": "apache/cassandra",
+      "url": "https://github.com/apache/cassandra",
+      "default_branch": "trunk",
+      "language": "Java",
+      "framework_surfaces": ["distributed database", "Ant/Gradle", "YAML config"],
+      "why_benchmark": "Large Java distributed database with configuration and storage/query subsystems.",
+      "starter_task": "Target a config-driven storage/query behavior and check whether BRE includes YAML and subsystem ownership files."
+    },
+    {
+      "full_name": "elastic/elasticsearch",
+      "url": "https://github.com/elastic/elasticsearch",
+      "default_branch": "main",
+      "language": "Java",
+      "framework_surfaces": ["distributed search", "Gradle", "YAML config"],
+      "why_benchmark": "Large Java search engine with plugins, cluster behavior, REST APIs, and config surfaces.",
+      "starter_task": "Target a REST action or cluster setting and verify BRE includes handler, setting, tests, and build context."
+    },
+    {
+      "full_name": "keycloak/keycloak",
+      "url": "https://github.com/keycloak/keycloak",
+      "default_branch": "main",
+      "language": "Java",
+      "framework_surfaces": ["identity", "Maven", "Quarkus", "auth config"],
+      "why_benchmark": "Enterprise identity/auth system where missing config and provider wiring is risky.",
+      "starter_task": "Target authentication flow behavior and verify BRE pulls provider, config, tests, and build files."
+    },
+    {
+      "full_name": "dotnet/runtime",
+      "url": "https://github.com/dotnet/runtime",
+      "default_branch": "main",
+      "language": "C#",
+      "framework_surfaces": [".NET", "MSBuild", "csproj", "sln", "Directory.Build.props"],
+      "why_benchmark": "Core .NET runtime and libraries; useful for C#/MSBuild enterprise context.",
+      "starter_task": "Target a library behavior and verify BRE includes project files, tests, shared props, and implementation."
+    },
+    {
+      "full_name": "dotnet/aspnetcore",
+      "url": "https://github.com/dotnet/aspnetcore",
+      "default_branch": "main",
+      "language": "C#",
+      "framework_surfaces": ["ASP.NET Core", "MSBuild", "appsettings.json", "csproj", "sln"],
+      "why_benchmark": "Canonical enterprise C# web framework with routing, middleware, dependency injection, and appsettings config.",
+      "starter_task": "Target middleware or routing behavior and check whether BRE includes startup/config/project boundaries."
+    },
+    {
+      "full_name": "dotnet/efcore",
+      "url": "https://github.com/dotnet/efcore",
+      "default_branch": "main",
+      "language": "C#",
+      "framework_surfaces": ["Entity Framework Core", "MSBuild", "csproj"],
+      "why_benchmark": "Enterprise ORM with provider abstractions, tests, and project boundaries.",
+      "starter_task": "Target query translation behavior and verify BRE includes provider, tests, and project files."
+    },
+    {
+      "full_name": "django/django",
+      "url": "https://github.com/django/django",
+      "default_branch": "main",
+      "language": "Python",
+      "framework_surfaces": ["Django", "settings.py", "urls.py", "migrations", "pyproject.toml"],
+      "why_benchmark": "Canonical Python web framework; enterprise context often lives in settings, URL routing, models, migrations, and tests.",
+      "starter_task": "Target auth or ORM behavior and verify BRE includes settings, models, migration/test context, and package metadata."
+    },
+    {
+      "full_name": "apache/airflow",
+      "url": "https://github.com/apache/airflow",
+      "default_branch": "main",
+      "language": "Python",
+      "framework_surfaces": ["Airflow", "DAGs", "providers", "pyproject.toml", "YAML config"],
+      "why_benchmark": "Enterprise workflow orchestrator with plugin/provider boundaries and heavy Python config surfaces.",
+      "starter_task": "Target scheduler/operator behavior and verify BRE includes provider, config, tests, and dependency metadata."
+    },
+    {
+      "full_name": "ansible/ansible",
+      "url": "https://github.com/ansible/ansible",
+      "default_branch": "devel",
+      "language": "Python",
+      "framework_surfaces": ["automation", "YAML", "modules", "plugins"],
+      "why_benchmark": "Enterprise automation codebase where YAML and plugin/module conventions matter as much as Python imports.",
+      "starter_task": "Target module/plugin behavior and verify BRE includes module docs, YAML examples, and tests."
+    },
+    {
+      "full_name": "envoyproxy/envoy",
+      "url": "https://github.com/envoyproxy/envoy",
+      "default_branch": "main",
+      "language": "C++",
+      "framework_surfaces": ["Bazel", "YAML config", "xDS", "protobuf"],
+      "why_benchmark": "Large C++ service proxy with generated APIs, config schemas, Bazel, and production networking concerns.",
+      "starter_task": "Target filter or xDS behavior and verify BRE includes protobuf, config schema, tests, and Bazel ownership."
+    },
+    {
+      "full_name": "protocolbuffers/protobuf",
+      "url": "https://github.com/protocolbuffers/protobuf",
+      "default_branch": "main",
+      "language": "C++",
+      "framework_surfaces": ["protobuf", "CMake", "Bazel"],
+      "why_benchmark": "Cross-language serialization system where .proto schemas are critical context.",
+      "starter_task": "Target parser/generator behavior and verify BRE includes .proto schemas, C++ implementation, and build files."
+    },
+    {
+      "full_name": "grpc/grpc",
+      "url": "https://github.com/grpc/grpc",
+      "default_branch": "master",
+      "language": "C++",
+      "framework_surfaces": ["gRPC", "CMake", "Bazel", "protobuf"],
+      "why_benchmark": "Enterprise RPC stack with C++ core, generated protocol surfaces, and many language bindings.",
+      "starter_task": "Target resolver/channel behavior and verify BRE includes core, tests, proto, and build files."
+    },
+    {
+      "full_name": "ClickHouse/ClickHouse",
+      "url": "https://github.com/ClickHouse/ClickHouse",
+      "default_branch": "master",
+      "language": "C++",
+      "framework_surfaces": ["database", "CMake", "SQL", "YAML config"],
+      "why_benchmark": "Large C++ analytical database with parser, storage, query, and config-heavy surfaces.",
+      "starter_task": "Target SQL function/query behavior and verify BRE includes parser, function, tests, and CMake context."
+    },
+    {
+      "full_name": "kubernetes/kubernetes",
+      "url": "https://github.com/kubernetes/kubernetes",
+      "default_branch": "master",
+      "language": "Go",
+      "framework_surfaces": ["Kubernetes", "YAML manifests", "API machinery", "go.mod"],
+      "why_benchmark": "Kubernetes is an enterprise platform boundary: API types, controllers, manifests, and deployment semantics drive context.",
+      "starter_task": "Target controller/API behavior and verify BRE includes API types, controller code, tests, and manifests."
+    },
+    {
+      "full_name": "helm/helm",
+      "url": "https://github.com/helm/helm",
+      "default_branch": "main",
+      "language": "Go",
+      "framework_surfaces": ["Helm", "Chart.yaml", "values.yaml", "templates"],
+      "why_benchmark": "Helm is the Kubernetes packaging layer; charts and values are critical context for deployment changes.",
+      "starter_task": "Target chart rendering or values behavior and verify BRE includes templates, chart metadata, tests, and Go code."
+    },
+    {
+      "full_name": "hashicorp/terraform",
+      "url": "https://github.com/hashicorp/terraform",
+      "default_branch": "main",
+      "language": "Go",
+      "framework_surfaces": ["Terraform", "HCL", "providers", "go.mod"],
+      "why_benchmark": "Infrastructure-as-code engine where HCL config and provider/plugin boundaries are central.",
+      "starter_task": "Target plan/apply behavior and verify BRE includes HCL tests, provider boundary, and Go implementation."
+    },
+    {
+      "full_name": "angular/angular",
+      "url": "https://github.com/angular/angular",
+      "default_branch": "main",
+      "language": "TypeScript",
+      "framework_surfaces": ["Angular", "TypeScript", "Bazel", "tsconfig"],
+      "why_benchmark": "Enterprise frontend framework with DI, compiler, templates, and TypeScript-heavy monorepo layout.",
+      "starter_task": "Target router/compiler behavior and verify BRE includes TS implementation, tests, tsconfig, and framework metadata."
+    },
+    {
+      "full_name": "microsoft/TypeScript",
+      "url": "https://github.com/microsoft/TypeScript",
+      "default_branch": "main",
+      "language": "TypeScript",
+      "framework_surfaces": ["TypeScript compiler", "tsconfig", "compiler tests"],
+      "why_benchmark": "Compiler-sized TypeScript corpus useful for true TS parser hardening.",
+      "starter_task": "Target checker or parser behavior and verify BRE includes compiler source, fixtures, and tsconfig."
+    },
+    {
+      "full_name": "grafana/grafana",
+      "url": "https://github.com/grafana/grafana",
+      "default_branch": "main",
+      "language": "Go/TypeScript",
+      "framework_surfaces": ["Go services", "React/TypeScript", "Docker", "Kubernetes", "provisioning YAML"],
+      "why_benchmark": "Enterprise observability app with backend, frontend, provisioning, deployment, and plugin surfaces.",
+      "starter_task": "Target alerting or datasource behavior and verify BRE includes backend, frontend, provisioning config, and tests."
+    }
+  ]
+}

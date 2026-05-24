@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "rust_grouped_import_dependencies",
+      "description": "Grouped Rust imports should pull the nested dependency files into loaded context.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Change database startup behavior",
+        "acceptance_criteria": [
+          "The agent must see the connection and pool modules before editing startup code."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "[package]\nname = \"bench_grouped\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+        "src/main.rs": "mod db;\nuse crate::db::{connection, pool};\n\nfn main() {\n    connection::connect();\n    pool::warm();\n}\n",
+        "src/db/mod.rs": "pub mod connection;\npub mod pool;\n",
+        "src/db/connection.rs": "pub fn connect() {}\n",
+        "src/db/pool.rs": "pub fn warm() {}\n",
+        "src/unrelated.rs": "pub fn unrelated() {}\n"
+      },
+      "oracle_files": [
+        "src/db/connection.rs",
+        "src/db/pool.rs"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0
+    },
+    {
+      "id": "critical_yaml_workflow",
+      "description": "Critical GitHub workflow YAML should be loaded even when it is not near active code.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Adjust release safety checks",
+        "acceptance_criteria": [
+          "The agent must see CI workflow configuration before changing release behavior."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "[package]\nname = \"bench_workflow\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+        "src/main.rs": "fn main() {}\n",
+        ".github/workflows/release.yaml": "name: release\non: [push]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - run: cargo test\n"
+      },
+      "oracle_files": [
+        ".github/workflows/release.yaml"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0
+    },
+    {
+      "id": "prelude_glob_symbol_filtering",
+      "description": "Prelude wildcard imports should follow task-visible symbols without loading every re-export.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Improve keyboard input behavior",
+        "acceptance_criteria": [
+          "The agent must see the input module defining KeyCode and is_key_down.",
+          "Unrelated prelude exports should stay out of loaded context."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "examples/input.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "[package]\nname = \"mini-game\"\nversion = \"0.1.0\"\nedition = \"2021\"\n",
+        "examples/input.rs": "use mini_game::prelude::*;\n\nfn main() {\n    if is_key_down(KeyCode::A) {\n        println!(\"left\");\n    }\n}\n",
+        "src/lib.rs": "pub mod audio;\npub mod input;\npub mod prelude;\npub mod rendering;\n",
+        "src/prelude.rs": "pub use crate::audio::*;\npub use crate::input::*;\npub use crate::rendering::*;\n",
+        "src/input.rs": "pub enum KeyCode { A }\npub fn is_key_down(_: KeyCode) -> bool { false }\n",
+        "src/audio.rs": "pub struct SoundEffect;\npub fn play_sound(_: SoundEffect) {}\n",
+        "src/rendering.rs": "pub struct SpriteBatch;\npub fn draw_sprite(_: SpriteBatch) {}\n"
+      },
+      "oracle_files": [
+        "src/input.rs"
+      ],
+      "baseline_files": [],
+      "forbidden_loaded_files": [
+        "src/audio.rs",
+        "src/rendering.rs"
+      ],
+      "min_bre_recall": 1.0
+    },
+    {
+      "id": "js_alias_handoff_sidecar",
+      "description": "A resolved JS alias sidecar should drive dependency discovery when Vite config is dynamic executable code.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Change Card rendering behavior",
+        "acceptance_criteria": [
+          "The agent must see the imported Card module even though the Vite alias is assigned through a variable."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/App.ts"
+        ]
+      },
+      "js_aliases": {
+        "@/*": [
+          "src/*"
+        ]
+      },
+      "files": {
+        "package.json": "{\"type\":\"module\",\"dependencies\":{\"vite\":\"latest\"}}\n",
+        "vite.config.ts": "import path from 'node:path';\nconst srcDir = path.resolve(__dirname, './src');\nexport default { resolve: { alias: { '@': srcDir } } };\n",
+        "src/App.ts": "import { Card } from '@/components/Card';\nexport const App = Card;\n",
+        "src/components/Card.ts": "export const Card = () => 'card';\n"
+      },
+      "oracle_files": [
+        "src/components/Card.ts"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0
+    },
+    {
+      "id": "java_maven_import_dependencies",
+      "description": "Java imports should pull Maven source dependencies and runtime/deployment config into context.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Update user controller startup behavior",
+        "acceptance_criteria": [
+          "The agent must inspect the imported UserService class.",
+          "The agent must see Maven, Spring application config, and Kubernetes deployment config."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/main/java/com/acme/web/UserController.java"
+        ]
+      },
+      "files": {
+        "pom.xml": "<project><modelVersion>4.0.0</modelVersion></project>\n",
+        "src/main/java/com/acme/web/UserController.java": "package com.acme.web;\n\nimport com.acme.service.UserService;\n\npublic class UserController {\n    private final UserService service;\n    public UserController(UserService service) { this.service = service; }\n}\n",
+        "src/main/java/com/acme/service/UserService.java": "package com.acme.service;\n\npublic class UserService {}\n",
+        "src/main/resources/application.yml": "spring:\n  application:\n    name: acme\n",
+        "deploy/k8s/deployment.yaml": "apiVersion: apps/v1\nkind: Deployment\n"
+      },
+      "oracle_files": [
+        "pom.xml",
+        "src/main/java/com/acme/service/UserService.java",
+        "src/main/resources/application.yml",
+        "deploy/k8s/deployment.yaml"
+      ],
+      "baseline_files": [],
+      "min_bre_recall": 1.0
+    },
+    {
+      "id": "invalid_cargo_manifest_visible",
+      "description": "Cargo setup failures must become diagnostics, not a false clean run.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Fix build setup",
+        "acceptance_criteria": [
+          "The agent must see that cargo failed before claiming the repo is clean."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "Cargo.toml": "version = 2\n",
+        "src/main.rs": "fn main() {}\n"
+      },
+      "oracle_files": [],
+      "baseline_files": [],
+      "expected_diagnostics": [
+        {
+          "compiler": "cargo",
+          "message_contains": "failed to parse manifest"
+        }
+      ]
+    },
+    {
+      "id": "missing_active_file_fails_closed",
+      "description": "A missing active file must make BRE exit nonzero instead of emitting empty source.",
+      "max_tokens": 5000,
+      "bre_config": {
+        "goal": "Edit a missing file",
+        "acceptance_criteria": [
+          "The run must fail closed if the task contract points at a missing file."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/missing.rs"
+        ]
+      },
+      "files": {
+        "src/main.rs": "fn main() {}\n"
+      },
+      "oracle_files": [],
+      "baseline_files": [],
+      "expected_exit_nonzero": true,
+      "expected_stderr_contains": "active file `src/missing.rs` does not exist"
+    },
+    {
+      "id": "active_budget_fails_closed",
+      "description": "Active files over the budget must fail instead of silently emitting an over-budget payload.",
+      "max_tokens": 1,
+      "bre_config": {
+        "goal": "Force an active context overflow",
+        "acceptance_criteria": [
+          "The run must fail when active files alone exceed the token budget."
+        ],
+        "assumptions": [],
+        "non_goals": [],
+        "active_files": [
+          "src/main.rs"
+        ]
+      },
+      "files": {
+        "src/main.rs": "fn main() {\n    println!(\"this active file is intentionally too large for a one-token budget\");\n}\n"
+      },
+      "oracle_files": [],
+      "baseline_files": [],
+      "expected_exit_nonzero": true,
+      "expected_stderr_contains": "context boundary exceeded"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{url}
+
+\title{\textbf{Bounded Reasoning Environment: Deterministic Context Control for Agentic Software Engineering}}
+\author{\textbf{BRE Project Team} \\ \small{\texttt{research@bre-project.org}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language model agents are increasingly used to modify large software repositories, but their reliability remains constrained by finite context windows, attention dilution, and incorrect context selection. Common retrieval approaches treat source code as semantic text and often retrieve snippets that are topically related but structurally disconnected from the engineering task. This paper introduces the Bounded Reasoning Environment (BRE), a reusable deterministic context runtime that converts a task contract and repository state into three disjoint trays: Active, Watching, and Background. BRE combines syntax-aware dependency resolution, task-aware heuristics, adaptive weights, project-aware diagnostics, deterministic token bounding, and run reports. We formalize context selection as a constrained utility maximization problem with token and file-count budgets, then evaluate the implementation with synthetic fail-closed tasks and real open-source stress trials. Microsoft VS Code is used as the primary scale case because it exposes editor-scale TypeScript monorepo behavior, large-file pressure, broad fixtures, and indirect platform dependencies.
+\end{abstract}
+
+\section{Introduction}
+Autonomous software engineering agents fail most often before code generation begins: they reason over the wrong files. A developer may ask for a small feature or refactor, while the real implementation boundary crosses imports, generated types, framework configuration, build manifests, tests, and runtime adapters. Adding more files to the prompt is not a principled solution. Long prompts increase cost and latency, reduce cache stability, and can degrade model attention.
+
+BRE treats context as an engineering resource. Its goal is not to maximize repository coverage; its goal is to supply the smallest bounded context that still preserves the structural dependencies needed for a verified change. The system is task-first rather than cursor-first. A user request becomes a task contract, and the repository is partitioned before an agent writes code.
+
+\section{Repository Partitioning}
+Let $R$ be the finite set of files in a repository. BRE partitions $R$ into three disjoint trays:
+\begin{equation}
+R = A \cup W \cup B
+\end{equation}
+\begin{equation}
+A \cap W = A \cap B = W \cap B = \emptyset
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item \textbf{Active ($A$)} contains files directly named by the task contract and expected to be edited or inspected.
+    \item \textbf{Watching ($W$)} contains structurally relevant context needed to reason about the Active set.
+    \item \textbf{Background ($B$)} contains files deliberately excluded from the prompt but still visible as repository inventory.
+\end{itemize}
+
+The key property is that Background is not forgotten. It is an explicit exclusion set. This makes context ejection inspectable rather than accidental.
+
+\section{Task Contract}
+BRE begins from a structured task contract:
+\begin{verbatim}
+{
+  "goal": "...",
+  "acceptance_criteria": ["..."],
+  "assumptions": ["..."],
+  "non_goals": ["..."],
+  "active_files": ["..."]
+}
+\end{verbatim}
+
+This converts conversational intent into an operating packet for the agent. The contract bounds scope, records assumptions, and defines the first Active set. The agent is then briefed on the task rather than left to reconstruct intent from file names and recent editor state.
+
+\section{Reusable Runtime Interface}
+BRE is designed as an embeddable engine, not only a command-line tool. The reusable runtime accepts:
+\begin{equation}
+\mathcal{E}: (R, C, O) \mapsto P
+\end{equation}
+\noindent where $R$ is the repository root, $C$ is the task contract, $O$ is a run-options object, and $P$ is the agent payload containing context trays, diagnostics, and an optional report. In implementation terms, the engine boundary is:
+\begin{verbatim}
+run_bre(repo_root, BreConfig, BreRunOptions) -> AgentPayload
+\end{verbatim}
+
+This boundary allows the same core to be called from a CLI, editor extension, background daemon, benchmark harness, or future IDE workbench. Adapters may hydrate language-specific state, such as JavaScript path aliases, before invoking the engine. The engine remains responsible for deterministic partitioning, scoring, bounding, diagnostics, feedback, and reporting.
+
+\section{Graph Resolution and Alias Handoff}
+BRE constructs dependency candidates from syntax-aware parsers and language-specific resolution rules. For a dependency graph $G=(V,E)$, files are vertices and import relations are edges:
+\begin{equation}
+(u,v) \in E \quad \text{if file } u \text{ imports or declares dependency } v
+\end{equation}
+
+For each active file $a \in A$, direct dependencies are routed to Watching:
+\begin{equation}
+\text{Deps}(a) = \{v \in R \mid (a,v) \in E\}, \quad \text{Deps}(a) \to W
+\end{equation}
+
+JavaScript and TypeScript path aliases are a known source of brittleness because Vite and similar configuration files are executable code. BRE therefore supports an explicit alias handoff: an editor or Node-side adapter may evaluate the JavaScript toolchain and pass a flattened alias map into BRE. Rust still provides static fallbacks for simple cases, but dynamic executable configuration is delegated to the runtime that understands it.
+
+\section{Signal Model and Heat Scoring}
+Each file $f \in R$ is represented by a feature vector:
+\begin{equation}
+\phi(f) = [\phi_1(f), \phi_2(f), \dots, \phi_k(f)] \in \{0,1,\dots\}^k
+\end{equation}
+
+\noindent where each feature corresponds to a structural or task signal. Current signal families include:
+\begin{itemize}
+    \item direct AST dependency;
+    \item symbol match from task-visible names;
+    \item git dirty state;
+    \item active manifest proximity;
+    \item active parent directory proximity;
+    \item task path term match;
+    \item critical configuration or deployment file.
+\end{itemize}
+
+Let $\theta \in \mathbb{R}_{\ge 0}^k$ be the weight vector. The current implementation uses an infinity-norm-style aggregator:
+\begin{equation}
+H_{\infty}(f) = \max_i \theta_i \phi_i(f)
+\end{equation}
+
+This means a single strong structural reason can keep a file hot. A more general family is:
+\begin{equation}
+H_p(f) = \left(\sum_i (\theta_i \phi_i(f))^p\right)^{1/p}
+\end{equation}
+\noindent where $p \to \infty$ recovers the current max-based behavior, while finite $p$ allows multiple weak signals to compound. These weights do not encode business value or model confidence. They encode omission risk: how dangerous it is to exclude a file from the agent prompt.
+
+\section{Constrained Context Optimization}
+For each non-active file $f \in R \setminus A$, BRE decides whether the file is loaded and whether it is represented exactly or as a skeleton. Let:
+\begin{equation}
+x_f \in \{0,1\}, \quad z_f \in \{0,1\}
+\end{equation}
+\noindent where $x_f=1$ means file $f$ is included in Watching and $z_f=1$ means the included representation is skeletonized. Let $T_f$ be exact token cost, $T_f^S$ be skeleton token cost, and $N$ be the maximum loaded-file count. Active files are fixed as loaded exactly.
+
+An idealized BRE objective is:
+\begin{equation}
+\max_{x,z} \sum_{f \in R \setminus A} x_f H(f) - \alpha \sum_{f \in R \setminus A} x_f z_f Q(f)
+\end{equation}
+\noindent subject to:
+\begin{equation}
+\sum_{a \in A} T_a + \sum_{f \in R \setminus A} x_f \left((1-z_f)T_f + z_f T_f^S\right) \le L
+\end{equation}
+\begin{equation}
+|A| + \sum_{f \in R \setminus A} x_f \le N
+\end{equation}
+\begin{equation}
+z_f \le x_f
+\end{equation}
+
+$Q(f)$ is an information-loss penalty for skeletonization, and $\alpha$ controls how strongly the engine prefers exact files over skeletons. This is a knapsack-like mixed-integer problem. BRE uses a deterministic greedy approximation: construct candidates from structural signals, score them, skeletonize/eject the coldest candidates under a stable ordering, then run an exact-token backfill pass for high-value files that fit the remaining budget.
+
+\section{Adaptive Feedback with Decay}
+BRE can update its heuristic weights after diagnostics. Let $D_t$ be the diagnostic set after run $t$, and let $e_f=1$ when a diagnostic implicates a file that was placed in Background. This is a context miss: the engine omitted a file that downstream verification later proved relevant. An interpretable projected update is:
+\begin{equation}
+\theta_{t+1} =
+\Pi_{[\theta^0, c]}
+\left(
+\theta_t
++ \eta_b \sum_{f \in B} e_f \phi(f)
+- \eta_d \mathbf{1}_{D_t=\emptyset}(\theta_t-\theta^0)
+\right)
+\end{equation}
+
+\noindent where $\theta^0$ is the default baseline, $c$ is the adaptive cap vector, $\Pi$ projects weights back into the valid interval, $\eta_b$ is the boost step, and $\eta_d$ is the decay step. The implementation uses targeted coordinate boosts for implicated files and a small decay toward defaults on clean runs. This makes feedback corrective rather than inflationary: weights rise when omitted context causes failures and cool back toward stable baselines after successful verification.
+
+\section{Project-Aware Diagnostics}
+Diagnostics are evidence, but noisy diagnostics can corrupt the learning loop. BRE chooses diagnostic adapters by project shape:
+\begin{itemize}
+    \item Rust repositories use \texttt{cargo check --message-format=json}.
+    \item Svelte and SvelteKit repositories use the package \texttt{check} script when available, otherwise local \texttt{svelte-check}.
+    \item Plain TypeScript and JavaScript repositories use local \texttt{tsc --noEmit}.
+\end{itemize}
+
+Known false positives may be excluded using \texttt{ignored\_diagnostics}. Excluded diagnostics are removed before payload emission and before feedback. This prevents compiler or framework noise from polluting adaptive weights.
+
+\section{Bounding and Ejection}
+Let $T(v)$ be the token count of file $v$, and let $L$ be the maximum prompt budget. BRE enforces:
+\begin{equation}
+\sum_{a \in A} T(a) + \sum_{w \in W} T(w) \le L
+\end{equation}
+
+If the bound is exceeded, BRE applies deterministic compression:
+\begin{enumerate}
+    \item rank Watching files by heat score and stable path order;
+    \item skeletonize low-score source files when possible;
+    \item eject cold files into Background until the token budget is satisfied;
+    \item apply a final loaded-file cap so the prompt is not dominated by many low-value files even when tokens remain.
+\end{enumerate}
+
+Large files are skeletonized before exact tokenization when possible, reducing the cost of ranking large candidate sets. Exact tokenization is deferred to the final kept set. This distinction became necessary during the VS Code stress trial.
+
+\section{Run Reports}
+BRE emits an optional run report with \texttt{--report}. The report records:
+\begin{itemize}
+    \item detected project types;
+    \item selected diagnostic adapters;
+    \item raw, ignored, and emitted diagnostic counts;
+    \item Active, Watching, and Background counts;
+    \item initial and final token counts;
+    \item skeletonized and ejected file counts;
+    \item whether adaptive weights changed;
+    \item whether a weights file exists after the run.
+\end{itemize}
+
+This makes a context run auditable. A downstream user can ask why a prompt was small, why a file was excluded, whether diagnostics were real, and whether the learning loop modified future behavior.
+
+\section{Evaluation}
+BRE is evaluated in two stages. First, a synthetic benchmark suite materializes temporary repositories with known oracle files and failure modes. The current local suite passes 8 of 8 tasks, including import dependency recovery, hidden critical YAML, alias handoff, Java Maven dependency selection, invalid manifest diagnostics, missing active-file fail-closed behavior, and active-budget fail-closed behavior.
+
+Second, BRE is stress-tested on real open-source repositories using pinned commits. These trials are designed to break the engine. The suite includes Rust game frameworks, TypeScript game infrastructure, Valence, VS Code, and the OpenNext Cloudflare adapter.
+
+\subsection{VS Code Scale Case}
+VS Code is the primary public case study because it is large, TypeScript-heavy, editor-domain code, and structurally close to the class of repositories that AI coding tools target. The stress task uses:
+\begin{itemize}
+    \item repository: \texttt{microsoft/vscode};
+    \item pinned commit: \texttt{a74acf03};
+    \item active file: \texttt{src/vs/workbench/services/keybinding/browser/keybindingService.ts};
+    \item goal: improve workbench keybinding conflict resolution and keyboard event dispatch behavior.
+\end{itemize}
+
+The oracle required platform keybinding services, the resolver, registry and item models, keyboard layout contracts, and workbench keybinding support files. The task also forbade domination by keyboard layout data files.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Mode & Recall & Files & Bytes & Result \\
+\midrule
+Baseline & 0.00 & 1 & 38,447 & pass \\
+BRE & 0.90 & 36 & 202,544 & pass \\
+\bottomrule
+\end{tabular}
+\caption{VS Code real-repo prompt audit for the keybinding resolver task. Baseline context contains only the Active file. BRE includes structural dependencies needed for an agent handoff.}
+\end{table}
+
+The first VS Code runs exposed core weaknesses:
+\begin{itemize}
+    \item candidate selection read too much of a large monorepo before ranking;
+    \item broad symbol and path matches competed with direct imports;
+    \item fixtures, tests, and keyboard layout data could dominate the tray;
+    \item token fitting alone was insufficient because too many small files can still harm reasoning.
+\end{itemize}
+
+The resulting engine changes included task-scoped symbol scans, pre-skeletonization for large candidates, cheap token estimates before exact tokenization, high-score exact backfill, task-matching AST dependency boosts, broad-directory cooling, and final loaded-file caps.
+
+\section{Discussion}
+BRE is not a replacement for compilers, tests, or human review. It is a control layer for agent context. Its value is highest when the cost of missing a dependency is larger than the cost of bounded upfront analysis: large monorepos, framework-heavy applications, infrastructure systems, trading systems, IDEs, compilers, and security-sensitive code.
+
+The VS Code result is intentionally not a claim that BRE ``solves'' editor-scale engineering. It is evidence that the engine can be forced against a hostile public repository, fail in measurable ways, and turn those failures into deterministic improvements.
+
+\section{Future Work}
+Future work includes per-file reason traces, deeper multi-hop type resolution, language-server handoff for project-specific semantic data, wider enterprise benchmarks across Java, C++, C\#, Python, Go, and Kubernetes-style configuration surfaces, and LLM-backed outcome trials that score not only context recall but patch correctness, time, token cost, and false-success rate.
+
+\section{Conclusion}
+BRE reframes context selection as a deterministic runtime problem rather than a prompt assembly convenience. By partitioning repositories into Active, Watching, and Background trays; scoring omission risk; enforcing token and file-count bounds; filtering diagnostics; adapting weights with decay; and emitting auditable run reports, BRE gives coding agents a more disciplined operating environment. The VS Code stress case demonstrates the intended development loop: break the engine on a public, complex repository, record the failure, patch the core, and rerun until the context boundary becomes reliable.
+
+\end{document}
